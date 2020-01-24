@@ -12,6 +12,7 @@
 - 문자(열) 입력 받아오기
   - 공백(띄어쓰기 등)이 포함된 문자열을 받아야 할 때
   - `cin >> `과 `getline()`을 함께 사용할 때 주의
+  - 문자열 내에서 특정 값들만 추출하기
 
 ## 전체 길이를 컴파일 시간에 알 수 없을 때 입력 받아오기
 - 첫 줄에 입력 길이(k)를 주므로 이를 받아놓는다
@@ -159,8 +160,12 @@ int main(void) {
 }
 ```
 
+### 문자열 내에서 특정 값들만 추출하기
+
+추가 예정
 
 ### Reference
-- https://jhnyang.tistory.com/128
-- https://jhnyang.tistory.com/107
-- https://jhnyang.tistory.com/99
+- [[백준 BAEKJOON]10172번 개,11718번 그대로 출력하기 문제, 오답원인](https://jhnyang.tistory.com/128)
+- [C언어 istream::getline()과 C++ string의 getline()! 한 줄 읽는 함수가 두 개?](https://jhnyang.tistory.com/107)
+- [cstring vs string.h vs string 스트링클래스 차이](https://jhnyang.tistory.com/99)
+- [C++ String 입력 받기](https://leeusin.tistory.com/418)
