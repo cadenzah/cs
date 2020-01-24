@@ -135,8 +135,7 @@
   > VS Code의 버전 혹은 실행 환경에 따라 경로가 바뀌었을 수도 있다. 알아서 찾자.
 
 5-2. 기본값으로 설정된 단축키 바인딩 목록이 표시된다. 여기에 없는 새로운 단축키 설정을 직접 추가해야 한다. 파일 탭 오른쪽에 있는 아이콘 중 `Open Keyboards Shortcuts (JSON)`에 해당하는 아이콘을 클릭한다.
-
-  ![keyboard_shortcuts.png](pics/keyboard_shortcuts.png)
+     ![keyboard_shortcuts.png](pics/keyboard_shortcuts.png)
 
 5-3. `keybindings.json` 파일이 열린다. 아래의 내용을 추가한다.
 
