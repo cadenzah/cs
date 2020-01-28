@@ -12,7 +12,7 @@
 - 문자(열) 입력 받아오기
   - 공백(띄어쓰기 등)이 포함된 문자열을 받아야 할 때
   - `cin >> `과 `getline()`을 함께 사용할 때 주의
-  - 문자열 내에서 특정 값들만 추출하기
+  - 문자열 내에서 특정 값들만 추출하기 (`.split()`)
 
 ## 전체 길이를 컴파일 시간에 알 수 없을 때 입력 받아오기
 - 첫 줄에 입력 길이(k)를 주므로 이를 받아놓는다
@@ -160,9 +160,39 @@ int main(void) {
 }
 ```
 
-### 문자열 내에서 특정 값들만 추출하기
+### 문자열 내에서 특정 값들만 추출하기 (`.split()`)
+입력들이 특정 문자를 기준으로 구분되어 들어올 때, 필요한 값들만 추출해내야 한다. 아래의 경우를 보자.
+```bash
+# 예시 입력 - baekjoon 10953
+3
+1,2
+4,5
+1,10
+```
 
-추가 예정
+위의 입력에서 쉼표를 기준으로 앞과 뒤의 숫자를 추출하여 합을 구해야 한다. C++에는 `string` 타입에 `.split()`과 같은 메서드가 없으므로 이를 직접 구현하여야 한다.
+
+```cpp
+// 입력 받아오기
+string temp;
+cin >> temp;
+
+comma_pos = temp.find(','); // 구분자 위치 얻어내기
+
+// 숫자값 추출
+string operand1_str;
+// 첫번째 인자: 추출할 원본 문자열
+// 두번째 인자: 원본 문자열에서 추출을 시작할 index
+// 세번째 인자: 원본 문자열에서 index를 포함하여 추출할 문자의 개수
+operand1_str.assign(temp, 0, comma_pos); // assign의 호출 대상 string에 대입
+string operand2_str;
+operand2_str.assign(temp, comma_pos + 1, temp.length() - comma_pos);
+
+// 변환
+int operand1 = stoi(operand1_str); // String to Int
+int operand2 = stoi(operand2_str);
+values[i] = operand1 + operand2;
+```
 
 ### Reference
 - [[백준 BAEKJOON]10172번 개,11718번 그대로 출력하기 문제, 오답원인](https://jhnyang.tistory.com/128)
