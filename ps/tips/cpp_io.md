@@ -9,6 +9,7 @@
   - 예시 3: 문자열 입력이 공백으로 구분될 때
 - 전체 길이를 런타임에 알 수 없을 때 입력 받아오기
   - 예시 1: 숫자 입력이 들어올 때
+  - 예시 2: 문자열 입력이 들어올 때
 - 문자(열) 입력 받아오기
   - 공백(띄어쓰기 등)이 포함된 문자열을 받아야 할 때
   - `cin >> `과 `getline()`을 함께 사용할 때 주의
@@ -105,11 +106,42 @@ Jack Johnson Jill Jude
 #include<iostream>
 #include<vector>
 using namespace std;
+
 int main() {
   int temp1, temp2;
   while (cin >> temp1 >> temp2) {
     // 입력에 EOF가 들어있으면, -1로 평가되므로 종료
     cout << temp1 + temp2 << "\n";
+  }
+
+  return 0;
+}
+```
+
+### 예시 2: 문자열 입력이 들어올 때
+단어 단위로 들어오는 문자열 입력은 숫자와 동일하게 `cin`을 사용하여 처리한다.
+
+공백으로 구분되는 장문 문자열이 입력되는 경우, `getline()`을 사용한다. 이때, `cin`과 마찬가지로 입력에 `EOF`가 들어있을 때 `-1`을 반환하므로 반복문의 조건 평가로 활용할 수 있다.
+
+아래와 같은 입력 예시를 그대로 다시 출력하려면,
+```bash
+Hello
+World!
+Let's try something new!
+```
+
+아래와 같은 코드로 충분하다.
+
+```cpp
+// https://www.acmicpc.net/problem/11718 - 그대로 출력하기
+#include <iostream>
+using namespace std;
+
+int main(void) {
+  string input;
+
+  while(getline(cin, input)) {
+    cout << input << endl;
   }
 
   return 0;
