@@ -15,6 +15,8 @@
   - 공백(띄어쓰기 등)이 포함된 문자열을 받아야 할 때
   - `cin >> `과 `getline()`을 함께 사용할 때 주의
   - 문자열 내에서 특정 값들만 추출하기 (`.split()`)
+- STL 컨테이너 사용시 유의
+  - 복사 선언시 범위 지정
 
 ---
 
@@ -25,6 +27,8 @@
 C++의 `cin`/`cout`에 사용되는 스트림은 기본적으로 `printf`/`scanf`와 같은 C의 `stdio`와 버퍼를 함께 사용한다. C의 `stdio`를 사용하지 않을 것이라면 `cin`/`cout`만이 버퍼를 사용하도록, 그래서 사용되는 버퍼가 줄고 실행 속도가 향상될 수 있도록 조치해주어야 한다.
 
 ```cpp
+using namespace std;
+
 ios::sync_with_stdio(false);
 cin.tie(NULL);
 ```
@@ -74,7 +78,28 @@ int main(void) {
 - 입력 개수를 받아놓은 뒤, 각각의 입력을 받을 임시 변수를 활용하는 것이 핵심
 
 ### 예시 2: 숫자 입력이 띄어쓰기 없이 한번에 올 때
-해당 경우의 문제 풀 때 추가
+다음과 같은 입력을 생각해보자.
+```bash
+# 이 예시에서는 각 입력이 한자리 정수라고 가정한다
+# https://www.acmicpc.net/problem/11720
+5
+54321
+```
+
+> 입력이 한자리 이상인 경우도 손쉽게 응용할 수 있다.
+
+위 예시에서는 입력의 길이, 전체 숫자 문자열, 이렇게 2개의 입력을 받았다. 길이를 정확히 모르더라도 상관없다. 입력을 받은 뒤 길이를 구하면 그만이기 때문이다.
+
+1. 해당 입력을 `string` 값으로 받는다.
+2. 해당 입력값의 길이를 활용하여 입력 String 각각에 첨자로 접근한다.
+3. 첨자로 접근한 각각의 문자는 `char` 자료형이므로, ASCII 코드로 사용 가능하다. 따라서, (각 문자 - `48`)로 해당 값을 `int`로 변환한다.
+
+```cpp
+for (int i = 0 ; i < count ; i ++) {
+  int temp = input[i] - 48;
+}
+```
+
 
 ### 예시 3: 문자열 입력이 공백으로 구분될 때
 - 예시 1과 마찬가지로, 공백을 기준으로 구분하여 받으면 된다
@@ -242,8 +267,24 @@ int operand2 = stoi(operand2_str);
 values[i] = operand1 + operand2;
 ```
 
+## STL 컨테이너 사용시 유의
+
+### 반복자를 사용한 범위 지정
+STL의 반복자는 범위를 표기할 때 `[시작 위치 반복자, 끝 위치 반복자)`, 즉 **반 열린 구간**으로 표기하며, STL 컨테이너에서 범위를 활용한 작업 수행시 이러한 규칙을 사용한다.
+
+따라서, `container.end()`는 컨테이너의 가장 마지막 요소 **다음**, 즉 **유효하지 않은 위치**를 가리키는 것이 일반적이다. 배열을 복사하여 컨테이너를 선언할 때에도 이러한 점을 유의하여 마지막 요소값이 누락되지 않도록 조심해야 한다.
+
+```cpp
+// https://www.acmicpc.net/problem/1924
+const string _DAYS[] = { "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT" }
+vector<string> DAYS(&_DAYS[0], &_DAYS[7]);
+```
+
+위 코드에서 `&_DAYS[7]`은 유효하지 않은 위치이며, 실제 `DAYS` 벡터는 `&_DAYS[6]` 까지의 요소만을 포함하게 된다.
+
 ### Reference
 - [[백준 BAEKJOON]10172번 개,11718번 그대로 출력하기 문제, 오답원인](https://jhnyang.tistory.com/128)
 - [C언어 istream::getline()과 C++ string의 getline()! 한 줄 읽는 함수가 두 개?](https://jhnyang.tistory.com/107)
 - [cstring vs string.h vs string 스트링클래스 차이](https://jhnyang.tistory.com/99)
 - [C++ String 입력 받기](https://leeusin.tistory.com/418)
+- [소프트웨어 공학 연구소](http://soen.kr)
