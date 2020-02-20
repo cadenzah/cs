@@ -29,7 +29,7 @@ string after = to_string(before);
 printf("%s\n", after);
 ```
 
-## ASCII `Int` → `String`
+## ASCII `Int` → `String` / `char` → `String`
 해당 정수값을 기반으로 새로운 `string` 타입 객체를 임시로 생성한다.
 
 ```cpp
@@ -42,6 +42,8 @@ answer = answer + string(1, digit);
 
 > **TIP**: 알파벳은 각각 26문자, 총 52문자이다
 > - 대문자: 65 ~ 90 / 소문자: 97 ~ 122
+
+C의 `char` 또한 내부적으로 정수값이므로 이러한 변환 과정을 동일하게 사용하여 `string` 타입의 값으로 젼환할 수 있다.
 
 ### `\x`
 - 16진수를 가리킨다.
