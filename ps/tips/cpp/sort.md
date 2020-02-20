@@ -30,6 +30,7 @@ sort(s.begin(), s.end(), greater<int>());
 
 ## 조건자 함수 정의하여 사용하기
 - 컨테이너 내의 요소를 임의로 정렬하려면 조건자 함수를 직접 정의해주어야 한다.
+- [38-1-가. 함수 객체](http://soen.kr/) 페이지를 참조하였다.
 
 ```cpp
 struct compare{

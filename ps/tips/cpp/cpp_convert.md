@@ -35,9 +35,12 @@ printf("%s\n", after);
 ```cpp
 int digit = 65; // 'A'
 string s(1, digit);
+
+string answer = "";
+answer = answer + string(1, digit);
 ```
 
-> - 알파벳은 각각 26문자, 총 52문자이다
+> **TIP**: 알파벳은 각각 26문자, 총 52문자이다
 > - 대문자: 65 ~ 90 / 소문자: 97 ~ 122
 
 ### `\x`
