@@ -4,6 +4,7 @@
 - `String` → `Int`
 - `Int` → `String
 - ASCII `Int` → `String`
+- `char` → `Int`
   - ASCII Code Table
 
 ## `String` → `Int`
@@ -44,6 +45,15 @@ answer = answer + string(1, digit);
 > - 대문자: 65 ~ 90 / 소문자: 97 ~ 122
 
 C의 `char` 또한 내부적으로 정수값이므로 이러한 변환 과정을 동일하게 사용하여 `string` 타입의 값으로 젼환할 수 있다.
+
+## `char` → `Int`
+문자열로 표기된 자리수를 `int`형 숫자로 바꿀 때 역시 ASCII값을 기반으로 변환한다. 모든 한자리 정수는 '0'을 기준으로 1씩 증가한다는 점을 이용하면 직관적으로 코드를 작성할 수 있다.
+
+```cpp
+char digit = '0' // 내부적으로 48
+cout << digit - 48; // 0
+cout << digit - '0'; // 0
+```
 
 ### `\x`
 - 16진수를 가리킨다.

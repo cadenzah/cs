@@ -4,7 +4,8 @@
 - 개관 - 연관 컨테이너(Associative Container)
 - 기본 자료형 이외의 데이터를 저장할 때
 - STL에서 공통적으로 지원하는 동작들
-- `map `map`
+- `set`
+- `map`
   - `map`과 `unordered_map`
   - `pair`
     - `pair`에 대한 STL `.sort` 사용
