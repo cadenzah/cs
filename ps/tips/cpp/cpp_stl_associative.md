@@ -9,7 +9,8 @@
   - `pair`
     - `pair`에 대한 STL `.sort` 사용
 - `multiset` / `multimap`
-  - `.equal_range(Key)`
+  - `.erase(key)`의 동작
+  - `.equal_range(key)`
 
 ## 개관 - 연관 컨테이너(Associative Container)
 
@@ -71,6 +72,7 @@ struct Todo {
 - `.insert(element)`: 삽입. 위치 지정 필요 없음에 유의
 - `.find(element)`: 검색. 컨테이너 내의 위치를 반복자로 반환
 - `.erase(element_iterator)`: 제거. 반복자로 위치 전달
+- `.begin()` / `.end()`: 컨테이너의 시작과 끝+1을 가리키는 반복자 반환
 
 ## `Set`
 - **집합** 생각하면 된다; 동일한 타입의 데이터를 모아놓은 것
@@ -148,7 +150,10 @@ cout << list[0].second; // 안녕!
 ## `multiset` / `multimap`
 앞서 설명한 `set`과 `map`은 `Key`가 중복일 경우 삽입이 이루어지지 않는다. `multi-`가 붙은 연관 컨테이너들은 Key가 중복인 요소들의 삽입이 가능하다.
 
-### `.equal_range(Key)`
+### `.erase(key)`의 동작
+해당 `key` 인자에 대응하는 모든 요소를 제거
+
+### `.equal_range(key)`
 - 동일한 Key를 갖는 요소들을 모두 열람하고자 할 때 사용. 해당 Key를 인자로 전달.
 - `pair<Itr, Itr>`를 반환하며, 두 값은 동일한 Key를 가지는 요소 여럿 중 **맨 처음 요소**, **맨 끝 요소**를 가리키는 반복자이다.
 
