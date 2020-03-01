@@ -11,8 +11,8 @@
 - `max_element` / `min_element`
 - `find` / `search`
 - `lower_bound` / `upper_bound`
-- `merge`
 - `swap`
+- `merge`
 
 ## 일반적인 특징
 
@@ -125,11 +125,28 @@ cout << *itr; // original.begin() + 5
 
 내부적으로 `==` 연산자를 사용하여 부분 컨테이너를 검사하므로, 별도의 비교 방법을 전달하려면 다섯번째 인자로 이항 비교 함수 객체를 전달하면 된다.
 
-## `lower_bound` / `upper_bound`
+## `upper_bound` / `lower_bound`
+이름에서 알 수 있듯 **상/하한선**을 확인하는 함수이다. 인자로 전달되는 값을 기준으로 상한선과 하한선을 가리키는 **반복자**를 반환한다. 이때, 상한선이란 인자로 전달되는 값보다 **큰 값**이 시작되는 지점(`value` < `*upper_bound_itr`)이며, 하한선이란 인자로 전달되는 값보다 **크거나 같은 값**이 시작되는 지점(`*lower_bound_itr` <= `value`)이다.
+
+이 함수들이 사용되는 컨테이너들은 반드시 **정렬된 상태**이어야 한다. 그래야 이진 탐색의 이득을 누릴 수 있기 때문.
+
+```cpp
+vector<int> list; // { 1, 2, 3, 4, 5, 5, 6, 7, 8}
+vector<int>::iterator itr = lower_bound(list.begin(), list.end(), 5); // list.begin() + 4
+```
+
+값을 비교하기 위하여 내부적으로 비교 연산자가 사용되므로, 별도의 비교 방법을 전달하려면 호출시 4번째 인자로 비교 함수 객체를 전달하거나, 컨테이너에 저장되는 요소 타입에 `<` 연산자를 재정의하면 된다.
+
+## `swap`
+두 변수 값을 서로 교환한다.
+
+```cpp
+int a=2, b=4;
+swap(a, b);
+```
 
 ## `merge`
 
-## `swap`
 
 ## Reference
 - [cplusplus.com](http://www.cplusplus.com/reference/algorithm)
