@@ -2,7 +2,6 @@
 
 #include <string>
 #include <vector>
-#include <queue>
 
 using namespace std;
 
@@ -29,7 +28,7 @@ vector<int> solution(vector<int> progresses, vector<int> speeds) {
                 // 앞에서부터 진행도가 100인 것들만 배포
                 ++task_count;
                 // 다음 배포 전까지 시작할 작업 지시자 갱신
-                task_idx += task_count;
+                ++task_idx;
             } else {
                 break;
             }
