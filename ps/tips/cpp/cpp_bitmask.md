@@ -111,4 +111,6 @@ for (int subset = set ; subset ; subset = (set & subset - 1)) {
 ...
 ```
 
+이때, `subsuet == 00...00`인 경우가 제외됨에 유의하자.
+
 ## 예제: 비밀 지도 (Programmers Lv1)
