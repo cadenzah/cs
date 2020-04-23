@@ -18,5 +18,7 @@ int cache2[101][101];
 // 대상 배열의 주소, 초기화할 값, 배열의 크기
 // 지정된 영역을 1Byte 단위로 초기화
 memset(cache, -1, sizeof(cache));
-memset(cache2, -1, sizeof(cache2) * 101);
+memset(cache2, -1, sizeof(cache2));
 ```
+
+3번째 인자에는 배열 차원에 무관하게 `sizeof(cache)`를 사용한 것에 유의한다.
