@@ -2,7 +2,7 @@
 
 ## Index
 - 1. (추천) `memset`을 이용한 초기화
-- 2. `vector`의 초기화
+- 2. `vector`를 이용한 초기화
 - 3. `for` 문
 - 3. `std::fill_in`
 
@@ -22,3 +22,14 @@ memset(cache2, -1, sizeof(cache2));
 ```
 
 3번째 인자에는 배열 차원에 무관하게 `sizeof(cache)`를 사용한 것에 유의한다.
+
+### 2. `vector`을 이용한 초기화
+
+```cpp
+#include <vector>
+
+vector<int> cache(N, 0);
+vector<vector<int> > cache2(N, vector<int>(M, 0));
+```
+
+초기화용 값에도 재귀적인 느낌으로 `vector` 인스턴스를 넣어줄 수 있음에 유의하자.
