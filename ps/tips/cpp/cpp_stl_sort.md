@@ -51,7 +51,7 @@ struct compare{
   int index;
   compare(int _index) { index = _index; }
   
-  bool operator() (const string& a, const string& b) {
+  const bool operator() (const string& a, const string& b) {
     if (a[index] >= b[index]) return true;
     else return false;
   }
@@ -63,3 +63,5 @@ string _list[] = { "abc", "cab", "dee" };
 vector<string> list(_list.begin(), _list.end());
 sort(list.begin(), list.end(), compare(index));
 ```
+
+`vector`의 요소로 구조체를 사용한다면, 해당 구조체와 조건자 함수를 위한 구조체를 **별도로 작성**하는 편이 구현이 용이하다.
