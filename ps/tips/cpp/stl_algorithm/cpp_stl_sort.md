@@ -5,6 +5,7 @@
 - 오름차순 정렬 (기본값)
 - 정렬 방식 변경하기
 - 조건자 함수 정의하여 사용하기
+  - 문제에서 제시한 비교 조건을 정확히 구현하자
 
 > `<algorithm>` 헤더 필요
 
@@ -64,4 +65,37 @@ vector<string> list(_list.begin(), _list.end());
 sort(list.begin(), list.end(), compare(index));
 ```
 
-`vector`의 요소로 구조체를 사용한다면, 해당 구조체와 조건자 함수를 위한 구조체를 **별도로 작성**하는 편이 구현이 용이하다.
+- `vector`의 요소로 구조체를 사용한다면, 해당 구조체와 조건자 함수를 위한 구조체를 **별도로 작성**하는 편이 구현이 용이하다.
+
+### 문제에서 제시한 비교 조건을 정확히 구현하자
+구현 문제의 경우 대소 비교 조건을 문제에서 제시하는 경우가 많다. 이를 제대로 다루지 않는다면 제대로 처리되지 못하는 경우가 발생할 수 있으므로 주의가 필요하다. 아래의 예를 보자.
+
+```cpp
+// 백준 11651 문제
+struct comparer {
+  const bool operator() (const pair<int, int>& a, const pair<int, int>& b) {
+    if (a.second < b.second) return a.second < b.second;
+    else return a.first < b.first;
+  }
+};
+```
+
+2차원 좌표평면 상의 두 정점을 비교하기 위한 조건자 함수이다. 문제에서 주어진 조건은 우선 *y 좌표의 오름차순*으로 정렬한 뒤, 만약 y 좌표가 같다면 *x 좌표의 오름차순*으로 정렬을 하는 것이다.
+
+당연히 위의 코드는 제대로 작동하지 않는다. 모든 경우를 포괄하지 않는다. 첫번째 조건문 이후의 `else`에서 반환하는 결과는 **y 좌표가 같은 경우**에만 해당되어야 하는데, `a.second > b.second`인 경우도 포함할 것이다. 이 경우는 제외되어야 한다.
+
+아래와 같은 식으로 작성한 것이 정답이다.
+
+```cpp
+struct comparer {
+  const bool operator() (const pair<int, int>& a, const pair<int, int>& b) {
+    if (a.second < b.second) return true;
+    else if (a.second == b.second) {
+      if (a.first < b.first) return true;
+    }
+    return false;
+  }
+};
+```
+
+또한, 조건자 함수를 사용한다는 것은 내장 자료형이 아닌 임의로 정의된 자료형의 비교를 수행한다는 의미이다. 따라서, 해당 자료형으로부터 만들어낼 수 있는 모든 경우들에 대하여 대소 관계가 명확하게 갈리도록 조건자 함수가 정의되어야 한다.
