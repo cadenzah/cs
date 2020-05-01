@@ -16,8 +16,7 @@ vector<int> genPrimes(int end) {
       continue;
     else {
       for (int j = i * i ; j <= end ; j += i) {
-        if (primes[j] % 2 == 0)
-          primes[j] = -1;
+        primes[j] = -1;
       }
     }
   }
