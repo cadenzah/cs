@@ -110,7 +110,7 @@ map<string, int> map2(mapCmp);
 `map` 내의 요소는 반복자를 사용하여 접근하거나, `[Key]` 연산을 통하여 접근할 수 있다. 읽기/수정 모두 가능하다.
 
 ```cpp
-map<int, string>::iterator itr = map1.find("안녕!");
+map<string, int>::iterator itr = map1.find("안녕!");
 itr->second = 100;
 map1["안녕!"] = 200; // 해당 Key의 값이 컨테이너 내에 존재하지 않으면, 추가된다.
 ```
